@@ -11,6 +11,7 @@ export function Router({
   defaultComponent: DefaultComponent = () => null,
 }) {
   const [currentPath, setCurrentPath] = useState(getCurrentPath());
+  const [routeParams, setrouteParams] = useState({});
 
   useEffect(() => {
     const onLocationChange = () => {
@@ -26,7 +27,7 @@ export function Router({
     };
   }, []);
 
-  let routeParams = {};
+  // let routeParams = {};
 
   //ad routes form children <Route/> components
 
@@ -54,7 +55,10 @@ export function Router({
     // por ejemplo, si la ruta es /search/:query
     // y la URL es /search/javascript
     // matched.params.query === 'javascript'
-    routeParams = matched.params;
+
+    setrouteParams(matched.params);
+
+    // routeParams = matched.params;
     return true;
   })?.Component;
 
